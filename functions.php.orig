@@ -1,0 +1,68 @@
+<?php
+
+/* The Template: line in the child's styles.css file causes the parent
+ * functions.php to be loaded after the child functions.php. For most parent
+ * styles, functions.php enqueues get_stylesheet_uri(), which loads the CHILD
+ * style.css.  For this reason, most documentation tells us to enqueue the
+ * PARENT style.css in the child functions.php.
+ *
+ * But this is not always the case. For example, style Twenty Twenty One's
+ * functions.php enqueues
+ *
+ *     get_template_directory_uri() . '/style.css'
+ *
+ * which will load the PARENT style.css. In this case, the child functions.php
+ * must enqueue the CHILD style.css. Further, because its add_action() call
+ * will run before the add_action() call in the parent functions.php, we must
+ * enqueue the child style.css to depend upon the handle used to enqueue the
+ * parent style.css in the parent functions.php!
+ *
+ * It's tempting to specify a priority parameter > 10 (the default) in the
+ * child add_action call, but that will make it run LAST rather than NEXT and
+ * potentially defeat more specific overrides (e.g. post-specific CSS) within
+ * the parent style.
+ *
+ * Similarly, it's also tempting to handle both cases by having the child load
+ * the parent AND child style.css files with priority > 10. While this may
+ * appear initially to work at the modest cost of loading one of the style.css
+ * files twice, it will load those files LAST and thwart any context-sensitive
+ * CSS overrides for posts, pages, etc. that may have been designed into the
+ * theme.
+ *
+ * So the solution is to read the parent functions.php to learn whether it will
+ * enqueue the child or parent style.css, comment out that stanza below, and,
+ * if the remaining stanza encodes the child, modify the dependencies array.
+ */
+
+/* Delete ending / if parent functions.php enqueues parent style.css */
+function enqueue_parent_styles() {
+    wp_enqueue_style(
+        'parent-style',
+        get_template_directory_uri() . '/style.css',
+        false,
+        date(
+            "ymd-His",
+            filemtime( get_template_directory_uri() . '/style.css' )
+        )
+    );
+}
+add_action( 'wp_enqueue_scripts', 'enqueue_parent_styles' );
+/* end comment */
+
+/* Delete ending / if parent functions.php enqueues child style.css */
+// Otherwise update the array value below!
+function enqueue_child_styles() {
+    wp_enqueue_style(
+        'child-style',
+        get_stylesheet_uri(),
+        array ('READ_PARENT_functions_php_TO_GET_THE_PARENT_HANDLE'),
+        date(
+            "ymd-His",
+            filemtime( get_stylesheet_directory() . '/style.css' )
+        )
+    );
+}
+add_action( 'wp_enqueue_scripts', 'enqueue_child_styles' );
+/* end comment */
+
+?>

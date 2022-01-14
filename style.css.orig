@@ -1,0 +1,16 @@
+/* 
+Theme Name: Wordpress Theme
+Theme URI: http://locahost/wp
+Description: Wordpress Theme Child
+Author: Marc Rouleau
+Author URI: http://localhost/wp
+Template: wordpresstheme
+Version: 1.0.0
+Text Domain: wordpresstheme-child
+*/
+
+/* A couple of weird initial settings to help verify the child theme setup */
+body {
+    background-color: red;
+    color: #79b133;
+}
