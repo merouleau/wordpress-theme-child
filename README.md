@@ -8,7 +8,7 @@ mkdir foo-child
 cd foo-child
 git clone https://github.com/merouleau/wordpress-theme-child
 cp -p wordpress-theme-child/style.css.orig style.css
-cp -p wordpress-theme-child/functions.css.orig functions.css
+cp -p wordpress-theme-child/functions.php.orig functions.php
 vi style.css
-vi functions.css
+vi functions.php
 ```
