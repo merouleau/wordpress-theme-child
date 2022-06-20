@@ -13,6 +13,11 @@ vi style.css
 vi functions.php
 ```
 
+If you want a thumbnail to show on the WP theme selection page, copy the
+parent's screenshot.png or create a new screenshot.png. The aspect ratio is 4:3
+(e.g. 1200x900), and the bottom sixth of the image will be obscured by the
+theme name.
+
 Here's a specific example for child ApoE4Info of parent Twenty Twenty-Two:
 ```
 mkdir apoe4info
@@ -20,6 +25,7 @@ cd apoe4info
 git clone https://github.com/merouleau/wordpress-theme-child
 cp -p wordpress-theme-child/style.css.orig style.css
 cp -p wordpress-theme-child/functions.php.orig functions.php
+cp -p ../twentytwentytwo/screenshot.png .
 ```
 
 Preamble for style.css:
