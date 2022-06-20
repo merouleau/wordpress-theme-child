@@ -24,6 +24,14 @@ cp -p wordpress-theme-child/functions.php.orig functions.php
 
 Preamble for style.css:
 ```
+/*
+Theme Name: ApoE4Info
+Template: twentytwentytwo
+Text Domain: apoe4info
+Version: 1.0
+Description: ApoE4Info is a child of Twenty Twenty-Two customized for the ApoE4.
+Author: Marc Rouleau
+*/
 ```
 
 Changes to functions.php:
