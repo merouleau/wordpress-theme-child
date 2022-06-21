@@ -1,16 +1,16 @@
 /* 
-Theme Name: Wordpress Theme
-Theme URI: http://locahost/wp
-Description: Wordpress Theme Child
-Author: Marc Rouleau
-Author URI: http://localhost/wp
+Theme Name: WordPress Theme Child
 Template: wordpresstheme
-Version: 1.0.0
 Text Domain: wordpresstheme-child
+Version: 1.0.0
+Description: WordPress Theme Child is a child of WordPress Theme customized for the Acme, Inc. website.
+Author: Your Name
 */
 
-/* A couple of weird initial settings to help verify the child theme setup */
+/* A couple of weird initial settings to help verify the child theme setup -
+ * delete the ending slash on this line to disable. */
 body {
     background-color: red;
     color: #79b133;
 }
+/* End test */
